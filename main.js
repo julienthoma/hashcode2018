@@ -5,8 +5,6 @@ const writeOutput = fileparser.writeOutput;
 const run = (fileName) => {
   const data = parseFile(`./${fileName}.in`);
 
-  console.log(data);
-
   testVehicles = [
       {
         id: 1,

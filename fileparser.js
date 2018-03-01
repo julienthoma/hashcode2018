@@ -2,7 +2,7 @@ const fs = require('fs');
 
 exports.writeOutput = (filename, vehicles) => {
   let outputString = vehicles.map(({id, rides}) => 
-  `${id} ${rides.join(' ')}`).join('\n');
+  `${rides.length} ${rides.join(' ')}`).join('\n');
 
   fs.writeFileSync(filename, outputString);
 };
