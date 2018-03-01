@@ -9,8 +9,27 @@ exports.writeOutput = (filename, data) => {
 exports.parseFile = file => {
   const content = fs.readFileSync(file, 'ascii');
   const fileRows = content.split('\n');
-  const [rows, columns, vehicles, rides, bonus, steps] =
+  const [rows, columns, vehicles, rideCount, bonus, steps] =
     fileRows[0].split(' ').map(element => parseInt(element));
+  
+  const rides = [];
+  for (let i = 1, len = fileRows.length; i < len - 1; i++) {
+    const [startRow, startColumn, finishRow, finishColumn, earliestStart, latestFinish]
+      = fileRows[i].split(' ').map(element => parseInt(element));
 
-    return { rows, columns, vehicles, rides, bonus, steps };
+    rides.push({
+      start: {
+        row: startRow,
+        column: startColumn
+      },
+      finish: {
+        row: finishRow,
+        column: finishColumn
+      },
+      earliestStart,
+      latestFinish
+    });
+  }
+
+  return { rows, columns, vehicles, rideCount, bonus, steps, rides };
 }
