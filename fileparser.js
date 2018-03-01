@@ -1,7 +1,8 @@
 const fs = require('fs');
 
-exports.writeOutput = (filename, data) => {
-  let outputString = Object.keys(data).length + '\n';
+exports.writeOutput = (filename, vehicles) => {
+  let outputString = vehicles.map(({id, rides}) => 
+  `${id} ${rides.join(' ')}`).join('\n');
 
   fs.writeFileSync(filename, outputString);
 };
@@ -18,6 +19,7 @@ exports.parseFile = file => {
       = fileRows[i].split(' ').map(element => parseInt(element));
 
     rides.push({
+      id: i - 1,
       start: {
         row: startRow,
         column: startColumn

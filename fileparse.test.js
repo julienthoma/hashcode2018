@@ -1,4 +1,4 @@
-import { parseFile } from './fileparser';
+import { parseFile, writeOutput } from './fileparser';
 
 describe('fileparser', () => {
   it('parse file', () => {
@@ -14,6 +14,7 @@ describe('fileparser', () => {
       steps: 10,
       rides: [
         {
+          id: 0,
           start: {
             row: 0,
             column: 0
@@ -26,6 +27,7 @@ describe('fileparser', () => {
           latestFinish: 9
         },
         {
+          id: 1,
           start: {
             row: 1,
             column: 2
@@ -38,6 +40,7 @@ describe('fileparser', () => {
           latestFinish: 9
         },
         {
+          id: 2,
           start: {
             row: 2,
             column: 0
@@ -51,5 +54,25 @@ describe('fileparser', () => {
         }
       ]
     });
+  });
+});
+
+describe('fileparser', () => {
+  it('writeOutput', () => {
+    expect(true).toEqual(true);
+
+    const vehicles = [
+      {
+        id: 1,
+        rides: [0]
+      },
+      {
+        id: 2,
+        rides: [2, 1]
+      }
+    ];
+
+    writeOutput('testoutput.in', vehicles);
+    
   });
 });
