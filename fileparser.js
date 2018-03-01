@@ -8,11 +8,9 @@ exports.writeOutput = (filename, data) => {
 
 exports.parseFile = file => {
   const content = fs.readFileSync(file, 'ascii');
-  const rows = content.split('\n');
-  // Relevant.
-  const [videoCount, endpointCount, requestDescCount, cacheCount, cacheCapacity] =
-    rows[0].split(' ').map(element => parseInt(element));
+  const fileRows = content.split('\n');
+  const [rows, columns, vehicles, rides, bonus, steps] =
+    fileRows[0].split(' ').map(element => parseInt(element));
 
-    return 'fu';
- 
+    return { rows, columns, vehicles, rides, bonus, steps };
 }
